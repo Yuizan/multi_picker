@@ -2,7 +2,7 @@ name: multi_picker
 description: A custom picker package for flutter,
 version: 0.0.1
 author: yifan wang
-homepage:
+homepage: https://github.com/Yuizan/multi_picker
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
