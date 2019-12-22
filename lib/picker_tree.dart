@@ -44,7 +44,6 @@ class PickerTree<T> {
         _retrieveAndAdd(k, v, node.children);
         return;
       }
-
     }
 
     if (!isFind) {
@@ -53,7 +52,6 @@ class PickerTree<T> {
       return;
     }
   }
-
 
   Node _retrieve(int k, List<Node> children) {
     for (int i = 0; i < children.length; i++) {
@@ -66,7 +64,6 @@ class PickerTree<T> {
         Node n = _retrieve(k, node.children);
         return n;
       }
-
     }
     return null;
   }

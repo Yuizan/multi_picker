@@ -16,10 +16,13 @@ class MultiPicker extends StatefulWidget {
       @required this.children,
       this.onConfirm})
       : title = (title == null ? "" : title),
-        backgroundColor = (backgroundColor == null ? Colors.white: backgroundColor),
-        textColor = (textColor == null ? Colors.black: textColor),
-        titleColor = (titleColor == null ? Colors.black: titleColor),
-        close = (close == null ? Icon(Icons.close, size: 24, color: Colors.black54) : close),
+        backgroundColor =
+            (backgroundColor == null ? Colors.white : backgroundColor),
+        textColor = (textColor == null ? Colors.black : textColor),
+        titleColor = (titleColor == null ? Colors.black : titleColor),
+        close = (close == null
+            ? Icon(Icons.close, size: 24, color: Colors.black54)
+            : close),
         confirmText = (confirmText == null ? "Confirm" : confirmText),
         super(key: key);
 
@@ -175,7 +178,10 @@ class _MultiPickerState extends State<MultiPicker> {
                   child: widget.close,
                 ),
                 Text(widget.title,
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: widget.titleColor)),
+                    style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color: widget.titleColor)),
                 GestureDetector(
                   onTap: onClickConfirm,
                   child: Container(
