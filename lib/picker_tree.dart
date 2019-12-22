@@ -25,6 +25,11 @@ class PickerTree<T> {
     _retrieveAndAdd(k, v, root);
   }
 
+  Node get(k) {
+    Node node = _retrieve(k, root);
+    return node;
+  }
+
   _retrieveAndAdd(int k, T v, List<Node> children) {
     bool isFind = false;
     for (int i = 0; i < children.length; i++) {
@@ -35,11 +40,11 @@ class PickerTree<T> {
         return;
       }
 
-      if (node.k.toString() ==
-          k.toString().substring(0, children.first.k.toString().length)) {
+      if (k.toString().startsWith(node.k.toString())) {
         _retrieveAndAdd(k, v, node.children);
         return;
       }
+
     }
 
     if (!isFind) {
@@ -49,10 +54,6 @@ class PickerTree<T> {
     }
   }
 
-  Node get(k) {
-    Node node = _retrieve(k, root);
-    return node;
-  }
 
   Node _retrieve(int k, List<Node> children) {
     for (int i = 0; i < children.length; i++) {
@@ -61,11 +62,11 @@ class PickerTree<T> {
         return node;
       }
 
-      if (node.k.toString() ==
-          k.toString().substring(0, children.first.k.toString().length)) {
+      if (k.toString().startsWith(node.k.toString())) {
         Node n = _retrieve(k, node.children);
         return n;
       }
+
     }
     return null;
   }

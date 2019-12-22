@@ -9,9 +9,17 @@ class MultiPicker extends StatefulWidget {
       {Key key,
       String title,
       String confirmText,
+      Color backgroundColor,
+      Color textColor,
+      Color titleColor,
+      Widget close,
       @required this.children,
       this.onConfirm})
       : title = (title == null ? "" : title),
+        backgroundColor = (backgroundColor == null ? Colors.white: backgroundColor),
+        textColor = (textColor == null ? Colors.black: textColor),
+        titleColor = (titleColor == null ? Colors.black: titleColor),
+        close = (close == null ? Icon(Icons.close, size: 24, color: Colors.black54) : close),
         confirmText = (confirmText == null ? "Confirm" : confirmText),
         super(key: key);
 
@@ -21,6 +29,13 @@ class MultiPicker extends StatefulWidget {
 
   final String confirmText;
 
+  final Color backgroundColor;
+
+  final Color textColor;
+
+  final Color titleColor;
+
+  final Widget close;
   final void Function(List<Map<int, String>>) onConfirm;
 
   @override
@@ -98,7 +113,7 @@ class _MultiPickerState extends State<MultiPicker> {
         return Container(
           width: double.maxFinite,
           child: Center(
-            child: Text(node.v),
+            child: Text(node.v, style: TextStyle(color: widget.textColor)),
           ),
         );
       });
@@ -108,7 +123,7 @@ class _MultiPickerState extends State<MultiPicker> {
         return Container(
           width: double.maxFinite,
           child: Center(
-            child: Text(node.v),
+            child: Text(node.v, style: TextStyle(color: widget.textColor)),
           ),
         );
       });
@@ -122,7 +137,7 @@ class _MultiPickerState extends State<MultiPicker> {
       list.add(Expanded(
         child: CupertinoPicker(
           itemExtent: 45,
-          backgroundColor: Colors.white,
+          backgroundColor: widget.backgroundColor,
           onSelectedItemChanged: (position) {
             onChangePicker(position, i);
           },
@@ -144,11 +159,11 @@ class _MultiPickerState extends State<MultiPicker> {
             padding: EdgeInsets.only(left: 10, right: 10),
             height: 50,
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: widget.backgroundColor,
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(10.0),
                   topRight: Radius.circular(10.0)),
-              border: new Border.all(color: Colors.white, width: 5),
+              border: new Border.all(color: widget.backgroundColor, width: 5),
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -157,11 +172,10 @@ class _MultiPickerState extends State<MultiPicker> {
                   onTap: () {
                     Navigator.pop(context);
                   },
-                  child: Icon(Icons.close, size: 24, color: Colors.black54),
+                  child: widget.close,
                 ),
                 Text(widget.title,
-                    style:
-                        TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: widget.titleColor)),
                 GestureDetector(
                   onTap: onClickConfirm,
                   child: Container(

@@ -1,3 +1,8 @@
+## 0.2.0
+
+* support custom color
+
+
 ## 0.1.0
 
 * Format code
